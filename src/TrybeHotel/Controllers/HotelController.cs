@@ -20,7 +20,7 @@ namespace TrybeHotel.Controllers
         [HttpGet]
         public IActionResult GetHotels()
         {
-            // Chame o método GetHotels() do repositório
+            // Chama o método GetHotels() do repositório
             var hotels = _repository.GetHotels();
 
             return Ok(hotels);
