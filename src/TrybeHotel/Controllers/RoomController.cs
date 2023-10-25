@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TrybeHotel.Models;
+using TrybeHotel.Dto;
 using TrybeHotel.Repository;
 
 namespace TrybeHotel.Controllers
@@ -28,11 +29,9 @@ namespace TrybeHotel.Controllers
         [HttpPost]
         public IActionResult PostRoom([FromBody] Room room)
         {
+            RoomDto response = _repository.AddRoom(room);
 
-            // Chame o método AddRoom() do repositório para inserir o quarto
-            var addedRoom = _repository.AddRoom(room);
-
-            return CreatedAtAction(nameof(GetRoom), addedRoom);
+            return Created($"/room/{response.RoomId}", response);
         }
 
         // 8. Desenvolva o endpoint DELETE /room/:roomId

@@ -47,8 +47,7 @@ namespace TrybeHotel.Repository
 
             string? cityName = _context.Cities.FirstOrDefault(c => c.CityId == hotel.CityId)?.Name;
 
-            // Mapeia o novo quarto e o hotel relacionado para o formato RoomDto e retorna
-            var addedRoomDto = new RoomDto
+            return new RoomDto
             {
                 RoomId = room.RoomId,
                 Name = room.Name,
@@ -56,15 +55,14 @@ namespace TrybeHotel.Repository
                 Image = room.Image,
                 Hotel = new HotelDto
                 {
-                    HotelId = hotel.HotelId,
+                    HotelId = room.HotelId,
                     Name = hotel.Name,
                     Address = hotel.Address,
                     CityId = hotel.CityId,
-                    CityName = hotel.City.Name
+                    CityName = cityName
                 }
             };
 
-            return addedRoomDto;
         }
 
         // 8. Desenvolva o endpoint DELETE /room/:roomId
