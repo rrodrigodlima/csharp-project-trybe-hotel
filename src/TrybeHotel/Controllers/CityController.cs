@@ -13,16 +13,21 @@ namespace TrybeHotel.Controllers
         {
             _repository = repository;
         }
-        
+
         // 2. Desenvolva o endpoint GET /city
         [HttpGet]
-        public IActionResult GetCities(){
-            throw new NotImplementedException();
+        public IActionResult GetCities()
+        {
+            // Chama o método GetCities() do repositório
+            var cities = _repository.GetCities();
+
+            return Ok(cities); 
         }
 
         // 3. Desenvolva o endpoint POST /city
         [HttpPost]
-        public IActionResult PostCity([FromBody] City city){
+        public IActionResult PostCity([FromBody] City city)
+        {
             throw new NotImplementedException();
         }
     }
