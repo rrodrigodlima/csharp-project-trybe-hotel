@@ -43,8 +43,9 @@ namespace TrybeHotel.Repository
             _context.Rooms.Add(room);
             _context.SaveChanges();
 
-            // Consulta o hotel relacionado para obter as informações do hotel
-            var hotel = _context.Hotels.First(h => h.HotelId == room.HotelId);
+            Hotel? hotel = _context.Hotels.FirstOrDefault(h => h.HotelId == room.HotelId);
+
+            string? cityName = _context.Cities.FirstOrDefault(c => c.CityId == hotel.CityId)?.Name;
 
             // Mapeia o novo quarto e o hotel relacionado para o formato RoomDto e retorna
             var addedRoomDto = new RoomDto
