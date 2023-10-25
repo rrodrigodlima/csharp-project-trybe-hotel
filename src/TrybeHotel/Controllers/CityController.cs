@@ -21,14 +21,17 @@ namespace TrybeHotel.Controllers
             // Chama o método GetCities() do repositório
             var cities = _repository.GetCities();
 
-            return Ok(cities); 
+            return Ok(cities);
         }
 
         // 3. Desenvolva o endpoint POST /city
         [HttpPost]
         public IActionResult PostCity([FromBody] City city)
         {
-            throw new NotImplementedException();
+            // Chame o método AddCity() do repositório para inserir a cidade
+            var addedCity = _repository.AddCity(city);
+
+            return CreatedAtAction(nameof(GetCities), addedCity);
         }
     }
 }
